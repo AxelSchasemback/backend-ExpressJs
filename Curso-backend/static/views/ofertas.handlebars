@@ -1,0 +1,139 @@
+<main>
+    <div class="fondo">
+        <section>
+            <div class="container-sec">
+                <div class="flex-absolute">
+                    <img class="sec-img" src="../img/edit-AMD-Intel.jpg" alt="fondoVs">
+                    <!-- Con Js hacemos un filter a las imagenes para traer los productos segun su categoria -->
+                    <!-- por ahora voy a aplicar productos.html -->
+                    <a href="./combos.html"><img class="section-intel" src="../img/intel-Simbolo.png" alt="Intel"></a>
+                    <a href="./combos.html"><img class="section-amd" src="../img/AMD-Simbolo.png" alt="Amd"></a>
+                </div>
+            </div>
+        </section>
+        <!--********** CARDS DE PRODUCTOS ************ -->
+        <table class="container-table">
+            <!-- ***** OFERTAS ***** -->
+            <div>
+                <tr class="row-fluid">
+                    <!-- Table Header - Encabezado de Tablas -->
+                    <th class="title-h">
+                        <h1 class="title-card">OFERTAS IMPERDIBLES</h1>
+                    </th>
+                </tr>
+                <tr class="gen-card">
+                    <!-- Table Data - datos de Tablas -->
+                    <td class="prdt-1 card-product">
+                        <div class="fond-card1">
+                            <img class="img-p" src="../img/productos/procesador-intel-i3.png" alt="intel-i3">
+                            <span class="stock">stock</span>
+                            <span class="fav-start fa fa-star"></span>
+                            <div class="col-md-subCard">
+                                <p class="name-prod">Procesador intel i3</p>
+                                <p class="price-prod text-success"><s>$19.220</s> $15.376</p>
+                                <button class="btn-cart btn-outline-dark" onclick=agregar1()>Add to Cart</button>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="card-product ">
+                        <div class="fond-card1">
+                            <img class="img-p" src="../img/productos/procesador-intel-5.png" alt="intel-i5">
+                            <span class="stock">stock</span>
+                            <span class="fav-start fa fa-star"></span>
+                            <div class="col-md-subCard">
+                                <p class="name-prod">Procesador Intel i5</p>
+                                <p class="price-prod text-success"><s>$25.059</s> $20.047</p>
+                                <button class="btn-cart btn-outline-dark" onclick=agregar1()>Add to Cart</button>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="card-product ">
+                        <div class="fond-card2">
+                            <img class="img-p" src="../img/productos/procesador-ryzen.png" alt="ryzen-3">
+                            <span class="stock">stock</span>
+                            <span class="fav-start fa fa-star"></span>
+                            <div class="col-md-subCard">
+                                <p class="name-prod">Procesador Ryzen 3</p>
+                                <p class="price-prod text-success"><s>$19.199</s> $15.359</p>
+                                <button class="btn-cart btn-outline-dark" onclick=agregar2()>Add to Cart</button>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="card-product">
+                        <div class="fond-card2">
+                            <img class="img-p" src="../img/productos/procesador-ryzen-5.png" alt="ryzen-5">
+                            <span class="stock">stock</span>
+                            <span class="fav-start fa fa-star"></span>
+                            <div class="col-md-subCard">
+                                <p class="name-prod">Procesador Ryzen 5</p>
+                                <p class="price-prod text-success"><s>$28.890</s> $23.112</p>
+                                <button class="btn-cart btn-outline-dark" onclick=agregar2()>Add to Cart</button>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </div>
+            <!-- ***** PRODUCTOS INTEL **** -->
+            <div>
+                <!-- Table Header - Encabezado de Tablas -->
+                <tr class="row-fluid">
+                    <th class="title-h">
+                        <h2 class="title-card">pocos con Stock!</h2>
+                    </th>
+                </tr>
+                <!-- ****** CARD DE LOS PRODUCTOS ******* -->
+                <tr class="gen-card">
+                    <!-- Table Data - datos de Tablas -->
+                    <td class="card-product">
+                        <div class="col-md-card">
+                            <img class="img-p" src="../img/productos/teclado-redDragon.png" alt="teclado-redDragon">
+                            <span class="stock red">!stock</span>
+                            <span class="fav-start fa fa-star"></span>
+                            <div class="col-md-subCard">
+                                <p class="name-prod">Teclado Red Dragon</p>
+                                <span class="price-prod">$5.741</span>
+                                <button class="btn-cart btn-outline-dark" onclick=agregar1()>Add to Cart</button>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="card-product ">
+                        <div class="col-md-card">
+                            <img class="img-p" src="../img/productos/mouse-razer.png" alt="mouse-razer">
+                            <span class="stock red">!stock</span>
+                            <span class="fav-start fa fa-star"></span>
+                            <div class="col-md-subCard">
+                                <p class="name-prod">Mouse Razer</p>
+                                <span class="price-prod">$6.436</span>
+                                <button class="btn-cart btn-outline-dark" onclick=agregar2()>Add to Cart</button>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="card-product ">
+                        <div class="col-md-card">
+                            <img class="img-p" src="../img/productos/pad-mouse-hyperx.png" alt="mousePad-hyperx">
+                            <span class="stock red">!stock</span>
+                            <span class="fav-start fa fa-star"></span>
+                            <div class="col-md-subCard">
+                                <p class="name-prod">Pad HyperX</p>
+                                <span class="price-prod">$2.719</span>
+                                <button class="btn-cart btn-outline-dark" onclick=agregar1()>Add to Cart</button>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="card-product">
+                        <div class="col-md-card">
+                            <img class="img-p" src="../img/productos/monitor-viewsonic32.png" alt="monitor-viewsonic32">
+                            <span class="stock red">!stock</span>
+                            <span class="fav-start fa fa-star"></span>
+                            <div class="col-md-subCard">
+                                <p class="name-prod">Monitor Viewsonic 32'</p>
+                                <span class="price-prod">$261.920</span>
+                                <button class="btn-cart btn-outline-dark" onclick=agregar2()>Add to Cart</button>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </div>
+        </table>
+    </div>
+</main>

@@ -1,0 +1,139 @@
+<main>
+    <div class="fondo">
+        <section>
+            <div class="container-sec">
+                <div class="flex-absolute">
+                    <img class="sec-img" src="../img/edit-AMD-Intel.jpg" alt="fondoVs">
+                    <!-- Con Js hacemos un filter a las imagenes para traer los productos segun su categoria -->
+                    <!-- por ahora voy a aplicar productos.html -->
+                    <a href="./combos.html"><img class="section-intel" src="../img/intel-Simbolo.png" alt="Intel"></a>
+                    <a href="./combos.html"><img class="section-amd" src="../img/AMD-Simbolo.png" alt="Amd"></a>
+                </div>
+            </div>
+        </section>
+        <!--********** CARDS DE PRODUCTOS ************ -->
+        <table class="container-table">
+            <!-- ***** Combos AMD ***** -->
+            <div>
+                <tr class="row-fluid">
+                    <!-- Table Header - Encabezado de Tablas -->
+                    <th class="title-h">
+                        <h1 class="title-card">Combos AMD</h1>
+                    </th>
+                </tr>
+                <tr class="gen-card">
+                    <!-- Table Data - datos de Tablas -->
+                    <td class="prdt-1 card-product">
+                        <div class="fond-card2">
+                            <img class="img-p" src="../img/productos/combos-pc-amd3.png" alt="ryzen-3">
+                            <span class="stock">stock</span>
+                            <span class="fav-start fa fa-star"></span>
+                            <div class="col-md-subCard">
+                                <p class="name-prod">Combo Ryzen 3</p>
+                                <span class="price-prod">$55.000</span>
+                                <button class="btn-cart btn-outline-dark" onclick=agregar2()>Add to Cart</button>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="card-product ">
+                        <div class="fond-card2">
+                            <img class="img-p" src="../img/productos/combos-pc-amd5.png" alt="ryzen-5">
+                            <span class="stock">stock</span>
+                            <span class="fav-start fa fa-star"></span>
+                            <div class="col-md-subCard">
+                                <p class="name-prod">Combo Ryzen 5</p>
+                                <span class="price-prod">$101.641</span>
+                                <button class="btn-cart btn-outline-dark" onclick=agregar2()>Add to Cart</button>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="card-product ">
+                        <div class="fond-card2">
+                            <img class="img-p" src="../img/productos/combos-pc-amd7.png" alt="ryzen-7">
+                            <span class="stock">stock</span>
+                            <span class="fav-start fa fa-star"></span>
+                            <div class="col-md-subCard">
+                                <p class="name-prod">Combo Ryzen 7</p>
+                                <span class="price-prod">$210.876</span>
+                                <button class="btn-cart btn-outline-dark" onclick=agregar2()>Add to Cart</button>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="card-product">
+                        <div class="fond-card2">
+                            <img class="img-p" src="../img/productos/combos-pc-amd9.png" alt="ryzen-9">
+                            <span class="stock">stock</span>
+                            <span class="fav-start fa fa-star"></span>
+                            <div class="col-md-subCard">
+                                <p class="name-prod">Combo Ryzen 9</p>
+                                <span class="price-prod">$423.410</span>
+                                <button class="btn-cart btn-outline-dark" onclick=agregar2()>Add to Cart</button>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </div>
+            <!-- ***** Combos INTEL **** -->
+            <div>
+                <!-- Table Header - Encabezado de Tablas -->
+                <tr class="row-fluid">
+                    <th class="title-h">
+                        <h2 class="title-card">Combos INTEL</h2>
+                    </th>
+                </tr>
+                <!-- ****** CARD DE LOS PRODUCTOS ******* -->
+                <tr class="gen-card">
+                    <!-- Table Data - datos de Tablas -->
+                    <td class="card-product">
+                        <div class="fond-card1">
+                            <img class="img-p" src="../img/productos/combos-pc-intel3.png" alt="intel-i3">
+                            <span class="stock">stock</span>
+                            <span class="fav-start fa fa-star"></span>
+                            <div class="col-md-subCard">
+                                <p class="name-prod">Combo Intel i3</p>
+                                <span class="price-prod">$57.157</span>
+                                <button class="btn-cart btn-outline-dark" onclick=agregar1()>Add to Cart</button>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="card-product ">
+                        <div class="fond-card1">
+                            <img class="img-p" src="../img/productos/combos-pc-intel5.png" alt="intel-i5">
+                            <span class="stock">stock</span>
+                            <span class="fav-start fa fa-star"></span>
+                            <div class="col-md-subCard">
+                                <p class="name-prod">Combo Intel i5</p>
+                                <span class="price-prod">$109.999</span>
+                                <button class="btn-cart btn-outline-dark" onclick=agregar1()>Add to Cart</button>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="card-product ">
+                        <div class="fond-card1">
+                            <img class="img-p" src="../img/productos/combos-pc-intel7.png" alt="intel-i7">
+                            <span class="stock">stock</span>
+                            <span class="fav-start fa fa-star"></span>
+                            <div class="col-md-subCard">
+                                <p class="name-prod">Combo Intel i7</p>
+                                <span class="price-prod">$279.600</span>
+                                <button class="btn-cart btn-outline-dark" onclick=agregar1()>Add to Cart</button>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="card-product">
+                        <div class="fond-card1">
+                            <img class="img-p" src="../img/productos/combos-pc-intel9.png" alt="intel-i9">
+                            <span class="stock">stock</span>
+                            <span class="fav-start fa fa-star"></span>
+                            <div class="col-md-subCard">
+                                <p class="name-prod">Combo Intel i9</p>
+                                <span class="price-prod">$616.290</span>
+                                <button class="btn-cart btn-outline-dark" onclick=agregar1()>Add to Cart</button>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </div>
+        </table>
+    </div>
+</main>

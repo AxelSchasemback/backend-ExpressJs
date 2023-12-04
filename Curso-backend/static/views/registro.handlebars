@@ -1,0 +1,64 @@
+<main>
+    <div class="fondo">
+        <!-- Get informacion Insensible - POST informacion Sensible -->
+        <h1 class="title-reg"> LLena los datos para registrarte </h1>
+        <form class="form-reg" action="http://localhost:8080/api/register" method="post">
+            <div class="form-name">
+                <span class="span-form">Nombre y Apellido: </span>
+                <input class="color-input" type="text" required placeholder="Alex Gonzales" name="name" id="name">
+            </div>
+            <div class="form-bthd">
+                <span class="span-form">Fecha de Nacimiento</span>
+                <input class="color-input" type="date" name="nacimiento">
+            </div>
+            <div class="form-sex">
+                <p class="tittle-p">selecciona tu sexo</p>
+                <label>
+                    <input type="radio" name="sexo" value="hombre">
+                    <span class="span-form">Hombre</span>
+                </label>
+                <label>
+                    <input type="radio" name="sexo" value="mujer">
+                    <span class="span-form">Mujer</span>
+                </label>
+                <label>
+                    <input type="radio" name="sexo" value="noBinario">
+                    <span class="span-form">No binario</span>
+                </label>
+            </div>
+            <div class="form-mail">
+                <span class="span-form">correo electronico: </span>
+                <input class="color-input" type="email" name="email" id="email" placeholder="correo electronico" required>
+            </div>
+            <div class="form-pass">
+                <span class="span-form">Contraseña: </span>
+                <input class="color-input" type="password" name="password" id="password" placeholder="contraseña" required>
+            </div>
+            <div class="div-check-submit">
+                <div class="flex-label checkLabel">
+                    <label>
+                        <div class="checkbox-span">
+                            <input type="checkbox" required name="requirement" id="requiremint">
+                            <span class="span-form-check"> Acepto los Terminos y condiciones<b class="asterisc-red">
+                                    *</b></span>
+                        </div>
+                    </label>
+                    <label>
+                        <div class="checkbox-span">
+                            <input type="checkbox">
+                            <span class="span-form-check"> Deseo recibir correos de ofertas y novedades</span>
+                        </div>
+                    </label>
+                </div>
+                <div class="h-10">
+                    <div>
+                        <input class="color-input" type="submit" value="Registrarme">
+                    </div>
+                    <div>
+                        <p>ya tienes una cuenta? <a href="sesion.html">inicia secíon</a></p>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</main>

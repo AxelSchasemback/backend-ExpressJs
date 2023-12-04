@@ -1,0 +1,49 @@
+<main>
+    <div class="fondo">
+        <section>
+            <div class="container-sec">
+                <div class="flex-absolute">
+                    <img class="sec-img" src="../static/public/img/edit-AMD-Intel.jpg" alt="fondoVs">
+                    <!-- Con Js hacemos un filter a las imagenes para traer los productos segun su categoria -->
+                    <!-- por ahora voy a aplicar productos.html -->
+                    <a href="../views/pages/combos.html"><img class="section-intel"
+                            src="../static/public/img/intel-Simbolo.png" alt="Intel"></a>
+                    <a href="../views/pages/combos.html"><img class="section-amd"
+                            src="../static/public/img/AMD-Simbolo.png" alt="Amd"></a>
+                </div>
+            </div>
+        </section>
+        <!--********** CARDS DE PRODUCTOS ************ -->
+        <table class="container-table">
+            <!-- ***** PRODUCTOS | TECLADOS ***** -->
+            <div>
+                <tr class="row-fluid">
+                    <!-- Table Header - Encabezado de Tablas -->
+                    <th class="title-h">
+                        <h1 class="title-card">Productos</h1>
+                    </th>
+                </tr>
+                <tr class="gen-card" id="Productos">
+                    <!-- Table Data - datos de Tablas -->
+                    {{#each allProducts}}
+                    <td class="prdt-1 card-product">
+                        <div class="fond-card1">
+                            <img class="img-p" src="../static/public/img/productos/{{this.thumbnail}}"
+                                alt={{this.thumstail}}>
+                            <span class="stock" id="segunStock">{{this.stock}}</span>
+                            <span class="fav-start fa fa-star"></span>
+                            <div class="col-md-subCard">
+                                <p class="name-prod">{{this.title}}</p>
+                                <span class="price-prod">${{this.price}}</span>
+                                <button class="btn-cart btn-outline-dark" id="btnBuy{{this.id}}">
+                                    Add to Cart
+                                </button>
+                            </div>
+                        </div>
+                    </td>
+                    {{/each}}
+                </tr>
+            </div>
+        </table>
+    </div>
+</main>

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="pc, computadora, destacado, recomendado, precio, calidad, envio, domicilio, armado">
+    <meta name="description"
+        content="Pagina dedicada al mundo gamer. Configura tu computadora, nosotros la armamos. El Mejor Precio. La Mejor Atencion. Black Week. La Mejor Financiacion. Las Mejores Ofertas.">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"
+        defer></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js" defer></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="../static/logic/{{script}}.js" defer></script>
+    <link rel="stylesheet" type="text/css" href="../static/public/style.css">
+    <link rel="shotcut icon" href="../static/public/img/iconLogo.png">
+    <title>{{titulo}}</title>
+</head>
+
+<body>
+    <div class="contenedor">
+        <!-- Header - Encabezado -->
+        <header class="nav-bar">
+            <!-- Nav - Navegacion -->
+            <nav class="w-100">
+                <div class="nav-style collapse" id="navbarToggleExternalContent">
+                    <div class="div-nav">
+                        <a href="/api/realTimeProducts"><img class="imgLogo"
+                                src="../static/public/img/logoMinimalista.png" alt="proyectGaming"></a>
+                        <div class="container-Nav-section navbar-collapse-md" id="navbarToggleExternalContent">
+                            <!-- ************ LIST BAR, 5 SECCIONES ************* -->
+                            <ul class="list-bar">
+                                <li class="botn"><a href="/api/products">Productos</a></li>
+                                <li class="botn"><a href="/api/combos">Nuestros Combos</a></li>
+                                <li class="botn"><a href="/api/offer">Nuestras Ofertas</a></li>
+                                <li class="dropdown botn">
+                                    <a class="list-account dropdown-toggle" href="/api/account"
+                                        role="button" id="dropdownMenuLink" data-bs-toggle="dropdown"
+                                        aria-expanded="false">
+                                        Mi Cuenta
+                                    </a>
+                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                        <li><a class="dropdown-item" href="/api/account">Facturas</a>
+                                        </li>
+                                        <li><a class="dropdown-item" href="/api/account">Estado de
+                                                Compra</a>
+                                        </li>
+                                        <li><a class="dropdown-item" href="/api/account">Favoritos</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="botn"><a href="/api/help">Ayuda</a></li>
+                            </ul>
+                        </div>
+                        <div class="row-end">
+                            <!-- ************ Buscador, REGISTRO, CARRITO, CANTIDAD DEL CARRITO *********** -->
+                            <input class="search-input" type="search" placeholder="Buscar producto" id="buscador">
+                            <input class="submit" type="submit" value="buscar">
+                            <a href="/api/register" ><img class="register"
+                                src="../static/public/img/usuario.png"></a>
+                            <a href="/api/cart"><img class="cart"
+                                    src="../static/public/img/carretilla.png"></a>
+                            <span class="cnt-cart" id="cnt"> 0 </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="navbar botn-nav navbar-dark">
+                    <div class="container-fluid">
+                        <button class="bot-h navbar-toggler" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="bot-h navbar-toggler-icon nav-span"></span>
+                        </button>
+                    </div>
+                </div>
+            </nav>
+        </header>
+       {{{body}}}
+        <footer>
+            <ul class="ft-list">
+                <li>
+                    <div class="list-social">
+                        <a href="https://www.facebook.com" target="_blank">Facebook
+                            <img src="../static/public/img/facebook.png" alt="facebook"></a>
+                    </div>
+                </li>
+                <li>
+                    <div class="list-social">
+                        <a href="https://www.instagram.com" target="_blank">Instagram
+                            <img src="../static/public/img/instagram.png" alt="instagram"></a>
+                    </div>
+                </li>
+                <li>
+                    <div class="list-social">
+                        <a href="https://www.youtube.com/" target=" _blank">Youtube
+                            <img src="../static/public/img/youtubea.png" alt="youtube"></a>
+                    </div>
+                </li>
+                <li>
+                    <div class="list-social">
+                        <a href="https://www.twitter.com" target="_blank">Twitter
+                            <img src="../static/public/img/twitter.png" alt="twitter"></a>
+                    </div>
+                </li>
+                <li>
+                    <div class="list-social">
+                        <a href="https://www.outlook.com" target="_blank">Hotmail
+                            <img src="../static/public/img/hotmail.png" alt="hotmail"></a>
+                    </div>
+                </li>
+                <li>
+                    <div class="list-social">
+                        <a href="https://www.whatsapp.com" target="_blank">WhatsApp
+                            <img src="../static/public/img/llamada.png" alt="telefono"></a>
+                    </div>
+                </li>
+            </ul>
+        </footer>
+    </div>
+</body>
+
+</html>
