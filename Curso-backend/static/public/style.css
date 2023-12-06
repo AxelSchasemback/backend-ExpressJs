@@ -468,6 +468,11 @@ main {
   flex-direction: row;
 }
 
+tr {
+  display: flex;
+  justify-content: center;
+}
+
 .title-h {
   width: 50rem;
 }
@@ -489,7 +494,7 @@ main {
   display: flex;
   margin: 20px 30px 20px;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: center;
 }
 
 .col-md-card {
@@ -1541,4 +1546,34 @@ footer {
     width: calc(20vw - 2px);
     height: calc(20vw - 2px);
   }
+}
+
+/* pagination */
+.pagination {
+  display: flex;
+  justify-content: center;
+}
+
+.pagination a {
+  color: rgb(255, 123, 0);
+  float: left;
+  padding: 8px 16px;
+  margin-bottom: 2em;
+  border-radius: 5px;
+  text-decoration: none;
+}
+
+.pagination a.active {
+  background-color: #4CAF50;
+  border-radius: 5px;
+  color: white;
+}
+
+.pagination a:hover:not(.active) {
+  background-color: #727272;
+}
+
+.pagination b {
+  padding: 6px 4px;
+  margin: 4px 1em;
 }

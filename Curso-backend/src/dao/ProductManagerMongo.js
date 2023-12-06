@@ -30,7 +30,7 @@ export class ProductManagerMongo {
     }
 
     async updateProduct(id, update) {
-        const updateProd = await Product.findByIdAndUpdate( id, { $set: update }, {new: true} ).lean()
+        const updateProd = await Product.findByIdAndUpdate(id, { $set: update }, { new: true }).lean()
         if (!updateProd) {
             throw new new Error('error al actualizar: producto no encontrado')
         }
