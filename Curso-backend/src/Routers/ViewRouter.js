@@ -38,10 +38,6 @@ viewsRouter.get('/api/chat', (req, res) => {
     })
 })
 
-viewsRouter.get('/api/cart', (req, res) => {
-    res.render('carrito', { titulo: 'PG - Cart' })
-})
-
 viewsRouter.get('/api/combos', (req, res) => {
     res.render('combos', { titulo: 'PG - Combos' })
 })

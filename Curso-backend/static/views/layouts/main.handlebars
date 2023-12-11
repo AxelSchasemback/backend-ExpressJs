@@ -17,9 +17,9 @@
         defer></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js" defer></script>
     <script src="/socket.io/socket.io.js"></script>
-    <script src="../static/logic/{{script}}.js" defer></script>
-    <link rel="stylesheet" type="text/css" href="../static/public/style.css">
-    <link rel="shotcut icon" href="../static/public/img/iconLogo.png">
+    <script src="/static/logic/{{script}}.js" defer></script>
+    <link rel="stylesheet" type="text/css" href="/static/public/style.css">
+    <link rel="shotcut icon" href="/static/public/img/iconLogo.png">
     <title>{{titulo}}</title>
 </head>
 
@@ -32,7 +32,7 @@
                 <div class="nav-style collapse" id="navbarToggleExternalContent">
                     <div class="div-nav">
                         <a href="/api/realTimeProducts"><img class="imgLogo"
-                                src="../static/public/img/logoMinimalista.png" alt="proyectGaming"></a>
+                                src="/static/public/img/logoMinimalista.png" alt="proyectGaming"></a>
                         <div class="container-Nav-section navbar-collapse-md" id="navbarToggleExternalContent">
                             <!-- ************ LIST BAR, 5 SECCIONES ************* -->
                             <ul class="list-bar">
@@ -63,9 +63,9 @@
                             <input class="search-input" type="search" placeholder="Buscar producto" id="buscador">
                             <input class="submit" type="submit" value="buscar">
                             <a href="/api/register" ><img class="register"
-                                src="../static/public/img/usuario.png"></a>
-                            <a href="/api/cart"><img class="cart"
-                                    src="../static/public/img/carretilla.png"></a>
+                                src="/static/public/img/usuario.png"></a>
+                            <a href="/api/carts/{{session}}"><img class="cart"
+                                    src="/static/public/img/carretilla.png"></a>
                             <span class="cnt-cart" id="cnt"> 0 </span>
                         </div>
                     </div>
@@ -87,37 +87,37 @@
                 <li>
                     <div class="list-social">
                         <a href="https://www.facebook.com" target="_blank">Facebook
-                            <img src="../static/public/img/facebook.png" alt="facebook"></a>
+                            <img src="/static/public/img/facebook.png" alt="facebook"></a>
                     </div>
                 </li>
                 <li>
                     <div class="list-social">
                         <a href="https://www.instagram.com" target="_blank">Instagram
-                            <img src="../static/public/img/instagram.png" alt="instagram"></a>
+                            <img src="/static/public/img/instagram.png" alt="instagram"></a>
                     </div>
                 </li>
                 <li>
                     <div class="list-social">
                         <a href="https://www.youtube.com/" target=" _blank">Youtube
-                            <img src="../static/public/img/youtubea.png" alt="youtube"></a>
+                            <img src="/static/public/img/youtubea.png" alt="youtube"></a>
                     </div>
                 </li>
                 <li>
                     <div class="list-social">
                         <a href="https://www.twitter.com" target="_blank">Twitter
-                            <img src="../static/public/img/twitter.png" alt="twitter"></a>
+                            <img src="/static/public/img/twitter.png" alt="twitter"></a>
                     </div>
                 </li>
                 <li>
                     <div class="list-social">
                         <a href="https://www.outlook.com" target="_blank">Hotmail
-                            <img src="../static/public/img/hotmail.png" alt="hotmail"></a>
+                            <img src="/static/public/img/hotmail.png" alt="hotmail"></a>
                     </div>
                 </li>
                 <li>
                     <div class="list-social">
                         <a href="https://www.whatsapp.com" target="_blank">WhatsApp
-                            <img src="../static/public/img/llamada.png" alt="telefono"></a>
+                            <img src="/static/public/img/llamada.png" alt="telefono"></a>
                     </div>
                 </li>
             </ul>

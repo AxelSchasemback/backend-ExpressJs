@@ -5,43 +5,45 @@ const cm = new CartManagerMongo()
 
 export const CartsRouter = Router()
 
-CartsRouter.get('/', async (req, res) => {
+CartsRouter.post('/:idCarrito/products/:idProducto', async (req, res) => {
+    const { idCarrito, idProducto } = req.params;
+
     try {
-        const allCarts = await cm.getCarts()
-        res.json(allCarts);
+        const updatedCart = await cm.addCart(idCarrito, idProducto);
+        res.json(updatedCart);
     } catch (error) {
-        res.send(error.message)
+        console.error('Error al agregar el producto al carrito:', error);
+        res.status(500).json({ error: 'Error interno del servidor' });
     }
-})
+});
 
-CartsRouter.get('/:cid', async (req, res) => {
+CartsRouter.get('/:Cid', async (req, res) => {
+
+    const userSession = req.session ? req.session.userId : false
+
     try {
+        const data = await cm.getPopulate(req.params['Cid'])
 
-        const idProductos = await cm.getCartById(parseInt(req.params['cid']))
-        res.json(idProductos)
+        console.log(data.products)
+
+        let totalPrice = 0;
+        let precios = []
+        data.products.forEach((prod) => {
+            totalPrice += prod.product.price * prod.quantity;
+            precios.push({ precios: (prod.product.price * prod.quantity) })
+        });
+
+        res.render('carrito', {
+            session: userSession,
+            userExist: userSession,
+            titulo: 'PG - producto',
+            product: data.products,
+            precios: precios,
+            total: totalPrice
+        })
 
     } catch (error) {
-        res.send(error.message)
-    }
-})
-
-CartsRouter.post('/', async (req, res) => {
-    try {
-        const newCart = await cm.createCart()
-        res.json(newCart)
-    } catch (error) {
-        res.send(error.message)
-    }
-})
-
-CartsRouter.post('/:cid/products/:pid', async (req, res) => {
-    try {
-        const { cid, pid } = req.params
-
-        await cm.addCart(cid, pid)
-
-        res.json(await cm.getCarts())
-    } catch (error) {
-        res.send(error.message)
+        console.error('Error al agregar el producto al carrito:', error);
+        res.status(500).json({ error: 'Error interno del servidor' });
     }
 })

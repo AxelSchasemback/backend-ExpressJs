@@ -1,22 +1,65 @@
 <main class="container fondo large">
+    {{#if userExist}}
     <h1 class="cart-h2 text-center">CARRITO DE COMPRAS</h1>
     <div class="table-responsive">
         <table class="table table-dark table-striped-columns" id="tablaProductos">
-            <tbody>
-                <tr class="table-scale">
+            <thead class="table-h" id="tablaTitulo">
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">PRODUCTO</th>
+                    <th scope="col">PRECIO</th>
+                    <th scope="col">CANTIDAD</th>
+                    <th scope="col">SUBTOTAL</th>
                 </tr>
+            </thead>
+            <tbody>
+                {{#each product}}
+                <tr class="table-scale">
+                    <th class="align-middle" scope="row">{{numeracion}}</th>
+                    <td>
+                        <div class="desc col-sm-1 col-10 d-flex p-2 w-100">
+                            <img class="cart-img" src="/static/public/img/productos/{{this.product.thumbnail}}"
+                                alt={{this.product.thumbnail}}>
+                            <h2 class="fs-4 w-100 align-middle text-center"> {{this.product.title}} </h2>
+                        </div>
+                    </td>
+                    <td class="text-center align-middle" id="precio">${{this.product.price}}</td>
+                    <td class="text-center align-middle">
+                        <div class="d-flex flex-column" id="movement">
+                            <i class="sum bi bi-cart-plus-fill" id="sumar${product.id}"></i>
+                            <span class="fs-4" id="cnt-prod1">{{this.quantity}}</span>
+                            <i class="min bi bi-cart-dash-fill" id="restar${product.id}"></i>
+                        </div>
+                    </td>
+                    <td class="text-center align-middle mark" id="totalProducto">${{subtotal}}</td>
+                </tr>
+                {{/each}}
+                {{!-- <tr>
+                    <th class="text-center">{{numeracion}}</th>
+                    <td id="totalPorCantidad1">${{cantPorProducto}}</td>
+                </tr> --}}
             </tbody>
         </table>
     </div>
     <div class="card-res d-flex flex-column flex-lg-row justify-content-between">
         <table class="table resumen-buy table-dark table-striped-columns text-center d-flex justify-content-center"
             id="tablaTotal">
+            {{#each precios}}
+            <tr>
+                <th>.</th>
+                <td id="subTotal">{{this.precios}}</td>
+            </tr>
+            {{/each}}
+            <tr>
+                <th>.</th>
+                <td id="total">Total: ${{total}}</td>
+            </tr>
         </table>
-        <!-- card sacada de boostrap -->
         <div class="card-res col-8 d-flex flex-column" id="botonCompra">
-            <div class="d-flex flex-column" id="productos">
-
-            </div>
+            <button class="btn-cart btn-outline-dark buy align-self-end" id="comprar">Comprar</button>
         </div>
+        {{else}}
+        <h1>Tienes que iniciar Sesion <a href="api/login"></a></h1>
     </div>
+    {{/if}}
 </main>

@@ -1,0 +1,33 @@
+<main>
+    <div class="fondo">
+        <table class="container-table">
+            <!-- ***** PRODUCTOS | TECLADOS ***** -->
+            <tr class="row-fluid">
+                <!-- Table Header - Encabezado de Tablas -->
+                <th class="title-h">
+                    <h1 class="title-card">Productos</h1>
+                </th>
+            </tr>
+            <tr class="gen-card" id="Productos">
+                <!-- Table Data - datos de Tablas -->
+                {{#each product}}
+                <td class="prdt-1 card-product">
+                    <div class="fond-card1">
+                        <img class="img-p" src="../static/public/img/productos/{{this.thumbnail}}"
+                            alt={{this.thumbnail}}>
+                        <span class="stock" id="segunStock">{{this.stock}}</span>
+                        <span class="fav-start fa fa-star"></span>
+                        <div class="col-md-subCard">
+                            <p class="name-prod">{{this.title}}</p>
+                            <span class="price-prod">${{this.price}}</span>
+                            <button class="btn-cart btn-outline-dark" id="btnBuy{{this.id}}">
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </td>
+                {{/each}}
+            </tr>
+        </table>
+    </div>
+</main>

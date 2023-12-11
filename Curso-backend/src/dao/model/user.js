@@ -4,16 +4,18 @@ import bcrypt from "bcryptjs";
 const schemaUser = new mongoose.Schema({
     _id: { type: String, required: true },
     name: { type: String, required: true },
-    email: { type: String, required: true, unique: true },
-    password: { type: String, required: true }
+    email: { type: String, required: true },
+    password: { type: String, required: true },
+    cartId: { type: String, ref: 'carts' }
 }, {
     versionKey: false,
-    strict: 'throw'
+    strict: 'throw',
+    methods: {
+        async validarContraseña(contraseña) {
+            return await bcrypt.compare(contraseña, this.password);
+        }
+    }
 })
-
-// schemaUser.methods.validarContraseña = async function (contraseña) {
-//     return await bcrypt.compare(contraseña, this.password);
-// };
 
 schemaUser.pre('save', async function (next) {
     if (!this.isModified('password')) {

@@ -468,10 +468,10 @@ main {
   flex-direction: row;
 }
 
-tr {
+/* tr {
   display: flex;
   justify-content: center;
-}
+} */
 
 .title-h {
   width: 50rem;
@@ -605,6 +605,7 @@ tr {
 
 .btn-cart {
   display: block;
+  text-decoration: none;
   font-size: 15px;
   position: relative;
   padding: 8px;
@@ -1146,6 +1147,10 @@ tr {
   margin-top: 2em;
   font-size: 1em;
   margin-right: 1em;
+}
+
+.card-res {
+  margin-bottom: 4em;
 }
 
 @media (max-width: 1024px) {

@@ -1,27 +1,33 @@
 import { Carts } from './model/cart.js';
-import { randomUUID } from 'crypto'
 
 export class CartManagerMongo {
 
-    async createCart() {
+    async createCart(userId) {
 
-        const cart = await Carts.create({ _id: randomUUID() })
+        const existingCart = await Carts.findOne({ _id: userId });
 
-        return cart.toObject()
+        if (existingCart) {
+            return existingCart.toObject();
+        }
+    
+        const cart = await Carts.create({ _id: userId, products: [] });
+    
+        return cart.toObject();
     }
+
 
     async addCart(idCarrito, idProducto) {
 
         try {
-            
+
             const cart = await Carts.findById(idCarrito);
 
             if (cart) {
-                
+
                 const existingProduct = cart.products.find(product => product.product === idProducto);
 
                 if (!existingProduct) {
-                    
+
                     await Carts.findByIdAndUpdate(
                         idCarrito,
                         { $push: { products: { product: idProducto, quantity: 1 } } },
@@ -31,7 +37,7 @@ export class CartManagerMongo {
                     const updatedCart = await Carts.findOneAndUpdate(
                         { _id: idCarrito, 'products.product': idProducto },
                         { $inc: { 'products.$.quantity': 1 } },
-                        { new: true } 
+                        { new: true }
                     );
 
                     return updatedCart;
@@ -47,6 +53,10 @@ export class CartManagerMongo {
     async getCarts() {
         return await Carts.find().lean()
     };
+
+    async getPopulate(idc) {
+        return await Carts.findById(idc).populate('products.product').lean()
+    }
 
     async getCartById(id) {
         const cart = cartToCart.find((search) => search.id === id)
@@ -72,4 +82,5 @@ export class CartManagerMongo {
             throw new Error('error al borrar: producto no encontrado')
         }
     }
+
 }

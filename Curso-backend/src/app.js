@@ -7,6 +7,7 @@ import { ProductManagerMongo } from './dao/ProductManagerMongo.js';
 import mongoose from 'mongoose';
 import { MONGODB_URL, PORT } from './config.js';
 import { messagesManager } from './dao/messageManagerMongo.js';
+import session from 'express-session'
 
 const pm = new ProductManagerMongo();
 
@@ -14,6 +15,12 @@ await mongoose.connect(MONGODB_URL);
 console.log(`Base de datos conectada a ${MONGODB_URL}`);
 
 const app = express();
+
+app.use(session({
+    secret: 'coso',
+    resave: false,
+    saveUninitialized: true
+  }));
 
 app.use(express.json());
 

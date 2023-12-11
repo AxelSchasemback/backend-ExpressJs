@@ -1,31 +1,37 @@
 import { Router } from "express";
 import { User } from "../dao/model/user.js";
+import { CartManagerMongo } from "../dao/CartManagerMongo.js";
+
+const cm = new CartManagerMongo()
 
 export const loginRouter = Router()
+
 
 loginRouter.post('/', async (req, res) => {
     const { email, password } = req.body;
 
     try {
-        // Buscar al usuario por correo electrónico
         const usuario = await User.findOne({ email });
 
         if (!usuario) {
-            return res.status(401).json({ mensaje: 'Correo electrónico o ' });
+            return res.status(401).json({ mensaje: 'Correo electrónico o contraseña incorrectos' });
         }
 
-        // Validar la contraseña
-        // const contraseñaValida = await usuario.validarContraseña(password);
+        const contraseñaValida = await usuario.validarContraseña(password);
 
-        // if (!contraseñaValida) {
-        //     return res.status(401).json({ mensaje: ' o contraseña incorrectos' });
-        // }
+        if (!contraseñaValida) {
+            return res.status(401).json({ mensaje: 'Correo electrónico o contraseña incorrectos' });
+        }
 
-        // Usuario autenticado con éxito
-        res.render('chat', {titulo: 'PG - Chat'});
+        await cm.createCart(usuario._id);
 
+        req.session.userId = usuario._id
+
+        await usuario.save();
+        
+        res.json(console.log('Inicio de sesión exitoso'));
     } catch (error) {
-        console.error(error);
-        res.status(500).json({ mensaje: 'Error al iniciar sesión' });
+        console.error('Error al iniciar sesión:', error);
+        res.status(500).json({ error: 'Error interno del servidor' });
     }
 });

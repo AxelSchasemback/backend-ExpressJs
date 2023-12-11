@@ -10,6 +10,8 @@ productsRouter.get('/', async (req, res) => {
     try {
         const filter = req.query.category ? { category: req.query.category } : {}
 
+        const userSession = req.session ? req.session.userId : null
+
         const pagination = {
             limit: req.query.limit || 10,
             page: req.query.page || 1,
@@ -31,9 +33,28 @@ productsRouter.get('/', async (req, res) => {
             data = await Product.paginate(filter, pagination);
         }
 
+        const products = data.docs.map(prod => ({
+            html: `<div class="fond-card1">
+                    <img class="img-p" src="../static/public/img/productos/${prod.thumbnail}" alt="${prod.thumstail}">
+                    <span class="stock" id="segunStock">${prod.stock}</span>
+                    <span class="fav-start fa fa-star"></span>
+                    <div class="col-md-subCard">
+                        <p class="name-prod">${prod.title}</p>
+                        <span class="price-prod">$${prod.price}</span>
+                        ${ userSession
+                             ? `<button class="btn-cart btn-outline-dark" onclick="addToCart('${userSession}', '${prod._id}')")>Add to Cart</button>`
+                             : `<a href="/api/login" class="btn-cart btn-outline-dark">iniciar session</a>`
+                        }
+                    </div>
+                </div>`
+        }));
+                        
         const context = {
-            titulo: 'PG - Productos',
+            session: userSession,
+            script: 'addProduct',
+            products: products,
             docs: data.docs,
+            titulo: 'PG - Productos',
             sortExist: req.query.sort,
             sort: req.query.sort,
             hayProducts: data.docs.length > 0,
@@ -46,25 +67,21 @@ productsRouter.get('/', async (req, res) => {
             hasPrevPage: data.hasPrevPage,
             prevPage: data.prevPage,
         };
-
+        
         res.render('producto', context)
     } catch (error) {
         res.send(error.message)
     }
-
+    
 })
 
 productsRouter.get('/:id', async (req, res) => {
     try {
-        const search = await pm.getProductById(parseInt(req.params['id']))
+        const search = await pm.getProductById(req.params['id'])
         res.json({ Product: search })
     } catch (error) {
         res.send(error.message)
     }
-})
-
-productsRouter.get('/:sort', async (req, res) => {
-
 })
 
 productsRouter.post('/', async (req, res) => {
@@ -92,7 +109,7 @@ productsRouter.delete('/:id', async (req, res) => {
     const { id } = req.params
     try {
         await pm.delProduct(id)
-        res.json(`se borro el producto de id: ${id}`)
+        res.json(`se borro el producto de id: ${ id }`)
     } catch (error) {
         res.send(error.message)
     }

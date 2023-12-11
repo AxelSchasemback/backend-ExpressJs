@@ -13,11 +13,11 @@ middlewares.use('/products', (req, res, next) => {
     }
 })
 
-middlewares.use('/products:id', (req, res, next) => {
+middlewares.use('/products/:id', (req, res, next) => {
 
-    if (parseInt(req.params['id'])) {
+    if (req.params['id']) {
 
-        return next(new error(`el ID: ${id} del Producto no existe`))
+        return next(new error(`el ID: ${req.params['id']} del Producto no existe`))
     } else {
         next()
     }
