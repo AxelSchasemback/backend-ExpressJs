@@ -6,7 +6,7 @@ const pm = new ProductManagerMongo()
 
 export const productsRouter = Router()
 
-productsRouter.get('/', async (req, res) => {
+productsRouter.get('/:query', async (req, res) => {
     try {
         const filter = req.query.category ? { category: req.query.category } : {}
 

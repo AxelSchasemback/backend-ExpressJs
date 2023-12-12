@@ -29,7 +29,7 @@ loginRouter.post('/', async (req, res) => {
 
         await usuario.save();
         
-        res.json(console.log('Inicio de sesión exitoso'));
+        res.redirect('/api/products');
     } catch (error) {
         console.error('Error al iniciar sesión:', error);
         res.status(500).json({ error: 'Error interno del servidor' });

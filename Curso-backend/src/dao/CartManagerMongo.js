@@ -9,9 +9,9 @@ export class CartManagerMongo {
         if (existingCart) {
             return existingCart.toObject();
         }
-    
+
         const cart = await Carts.create({ _id: userId, products: [] });
-    
+
         return cart.toObject();
     }
 
@@ -59,28 +59,75 @@ export class CartManagerMongo {
     }
 
     async getCartById(id) {
-        const cart = cartToCart.find((search) => search.id === id)
-        if (cart) {
-            return cart.products;
-        } else {
-            throw new error('Carrito no encontrado')
+        const searchCart = await Carts.findbyId(id).lean()
+        if (!searchCart) {
+            throw new new Error('error al buscar: Carrito no encontrado')
         }
+        return searchCart
+    }
+
+    async getCartProduct(idC, idP) {
+        const idCarrito = await Carts.findById(idC).lean()
+        const prod = idCarrito.products.find(prod => prod.product === idP)
+        console.log(prod)
+        return  prod
     }
 
     async delCart(id) {
 
-        const restaCart = this.carts.find((product) => product.id === id)
+        const deleteCart = await Carts.findByIdAndDelete(id).lean()
+        if (!deleteCart) {
+            throw new new Error('error al borrar: Carrito no encontrado')
+        }
+        return deleteCart
+    }
 
-        if (restaCart) {
+    async delProdCart(idC, idP) {
 
-            const deleteCart = this.carts.filter((del) => del.id !== id);
+        const idCart = await Carts.findById(idC).lean()
 
-            this.carts = deleteCart;
+        if (idCart) {
 
-            return deleteCart;
+            const idProd = idCart.products.find(prod => prod._id === idP)
+
+            if (idProd) {
+                await Carts.findByIdAndUpdate(
+                    idC,
+                    { $pull: { products: { product: idP } } },
+                    { new: true }
+                ).lean();
+            } else {
+                throw new Error('error producto no encontrado')
+            }
+
         } else {
-            throw new Error('error al borrar: producto no encontrado')
+
+            throw new Error('error al encontrar el Carrito')
         }
     }
 
+    async updateCart(id, update) {
+        const updateCart = await Carts.findByIdAndUpdate(id, { $set: { products: update  } }, { new: true }).lean()
+        if (!updateCart) {
+            throw new Error('error al actualizar carrito')
+        }
+        return updateCart
+    }
+
+    async updateQuantity(idC, idP, quantity) {
+
+        const updateQuantity = await Carts.findByIdAndUpdate(idC, {
+            $set: {
+                products: {
+                    product: idP,
+                    quantity
+                }
+            }
+        },
+            { new: true }
+        )
+        if (!updateQuantity) {
+            throw new Error('error al actualizar la cantidad del carrito')
+        }
+    }
 }

@@ -17,33 +17,69 @@ CartsRouter.post('/:idCarrito/products/:idProducto', async (req, res) => {
     }
 });
 
+CartsRouter.get('/:Cid/products/:Pid', async (req, res) => {
+
+    try {
+        const { Cid, Pid } = req.params
+        const cartProduct = await cm.getCartProduct(Cid, Pid)
+        res.json(cartProduct)
+    } catch (error) {
+        res.send(error.message)
+    }
+})
+
 CartsRouter.get('/:Cid', async (req, res) => {
 
     const userSession = req.session ? req.session.userId : false
 
-    try {
-        const data = await cm.getPopulate(req.params['Cid'])
+    const data = await cm.getPopulate(req.params['Cid'])
 
-        console.log(data.products)
+    let totalPrice = 0;
+    let precios = []
 
-        let totalPrice = 0;
-        let precios = []
         data.products.forEach((prod) => {
-            totalPrice += prod.product.price * prod.quantity;
-            precios.push({ precios: (prod.product.price * prod.quantity) })
-        });
+        totalPrice += prod.product.price * prod.quantity;
+        precios.push({ precios: (prod.product.price * prod.quantity) })
+    });
 
-        res.render('carrito', {
-            session: userSession,
-            userExist: userSession,
-            titulo: 'PG - producto',
-            product: data.products,
-            precios: precios,
-            total: totalPrice
-        })
+    console.log(userSession ? data.products : [])
 
+    res.render('carrito', {
+        session: userSession,
+        userExist: userSession,
+        titulo: 'PG - producto',
+        product: data.products,
+        precios: precios,
+        total: totalPrice
+    })
+
+})
+
+CartsRouter.put('/:Cid', async (req, res) => {
+    try {
+        const { product, quantity } = req.body
+        const updateCarrito = await cm.updateCart(req.params['Cid'], { product, quantity })
+        res.json({ Borraste: updateCarrito })
     } catch (error) {
-        console.error('Error al agregar el producto al carrito:', error);
-        res.status(500).json({ error: 'Error interno del servidor' });
+        res.send(error.message)
+    }
+})
+
+CartsRouter.put('/:Cid/products/:Pid', async (req, res) => {
+    try {
+        const { quantity } = req.body
+        const updateQuantity = await cm.updateQuantity(req.params['Cid'], req.params['Pid'], quantity)
+        res.json(updateQuantity)
+    } catch (error) {
+        res.send(error.message)
+    }
+})
+
+CartsRouter.delete('/:Cid', async (req, res) => {
+    try {
+        const delCart = await cm.delCart(req.params['Cid'])
+        res.json(delCart)
+    } catch (error) {
+        res.send(error.message)
     }
 })
