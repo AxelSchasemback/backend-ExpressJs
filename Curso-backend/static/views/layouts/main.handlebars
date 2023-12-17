@@ -40,9 +40,8 @@
                                 <li class="botn"><a href="/api/combos">Nuestros Combos</a></li>
                                 <li class="botn"><a href="/api/offer">Nuestras Ofertas</a></li>
                                 <li class="dropdown botn">
-                                    <a class="list-account dropdown-toggle" href="/api/account"
-                                        role="button" id="dropdownMenuLink" data-bs-toggle="dropdown"
-                                        aria-expanded="false">
+                                    <a class="list-account dropdown-toggle" href="/api/account" role="button"
+                                        id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
                                         Mi Cuenta
                                     </a>
                                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
@@ -62,9 +61,22 @@
                             <!-- ************ Buscador, REGISTRO, CARRITO, CANTIDAD DEL CARRITO *********** -->
                             <input class="search-input" type="search" placeholder="Buscar producto" id="buscador">
                             <input class="submit" type="submit" value="buscar">
-                            <a href="/api/register" ><img class="register"
-                                src="/static/public/img/usuario.png"></a>
-                            <a href="/api/carts/{{session}}"><img class="cart"
+                            <div class="btn-group">
+                                <button class="btn btn-secondary dropdown-toggle boton-user" type="button"
+                                    data-bs-toggle="dropdown" aria-expanded="false"><img class="user-session" src="/static/public/img/usuario.png">
+                                </button>
+                                <ul class="dropdown-menu drop-user">
+                                    {{#if session}}
+                                    <li class="li-user"><a class="dropdown-item text-white" href="/api/account">Perfil</a></li>
+                                    <li class="li-user"><a class="dropdown-item text-white" href="/api/logout">Logout</a></li>
+                                    {{else}}
+                                    <li class="li-user"><a class="dropdown-item text-white" href="/api/login">LogIn</a></li>
+                                    {{/if}}
+                                </ul>
+                            </div>
+                            {{!-- <a {{#if session}} href="/api/logout"><img class="logout" {{else}} href="/api/login"><img
+                                    class="login" {{/if}} src="/static/public/img/usuario.png"></a> --}}
+                            <a href="/api/carts/{{cartId}}"><img class="cart"
                                     src="/static/public/img/carretilla.png"></a>
                             <span class="cnt-cart" id="cnt"> 0 </span>
                         </div>
@@ -81,7 +93,7 @@
                 </div>
             </nav>
         </header>
-       {{{body}}}
+        {{{body}}}
         <footer>
             <ul class="ft-list">
                 <li>

@@ -46,10 +46,6 @@ viewsRouter.get('/api/help', (req, res) => {
     res.render('ayuda', { titulo: 'PG - Help' })
 })
 
-viewsRouter.get('/api/account', (req, res) => {
-    res.render('miCuenta', { titulo: 'PG - Account' })
-})
-
 viewsRouter.get('/api/register', (req, res) => {
     res.render('registro', {
         titulo: 'PG - Register',

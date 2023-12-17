@@ -1,25 +1,36 @@
 <main>
     <div class="div-account fondo">
-        <img class="avatar" src="../img/usuario2.png" alt="Avatar">
+        <img class="avatar" src="/static/public/img/usuario2.png" alt="Avatar">
         <div class="info-user">
-            <p> Nombre y Apellido: </p>
-            <p> Fecha de Nacimiento: </p>
-            <p> sexo: </p>
-            <p> agregar mas informacion</p>
-            <textarea placeholder="Descripcion Opcional" name="description" id="description" rows="6"></textarea>
-            <a class="btn-register" href="./registro.html">para ver tus datos debes iniciar sesion</a>
+            <p> Nombre y Apellido: {{name}} </p>
+            <p> Fecha de Nacimiento: {{date}} </p>
+            <p> sexo: {{sex}} </p>
+            {{#if description}}
+            <p>descripcion: {{description}}</p>
+            <form id="descriptionForm" action="/api/account" method="POST">
+                <label for="description">Actualizar Descripcion:</label>
+                <textarea placeholder="Descripción Opcional" name="description" id="description" rows="6"></textarea>
+                <button type="submit" class="des-submit" onclick="addDesc()">Submit</button>
+            </form>
+            {{else}}
+            <form id="descriptionForm" action="/api/account" method="POST">
+                <label for="description">Descripción Opcional:</label>
+                <textarea placeholder="Descripción Opcional" name="description" id="description" rows="6"></textarea>
+                <button type="submit" class="des-submit" onclick="addDesc()">Submit</button>
+            </form>
+            {{/if}}
         </div>
         <div class="info-account">
             <h1 class="title">Tus Facturas.</h1>
             <p>
                 No Tienes Ninguna Factura...<br>
-                puedes Ver nuestros productos haciendo <a class="anchor" href="./productos.html">Click Aqui</a>
+                puedes Ver nuestros productos haciendo <a class="anchor" href="/api/products">Click Aqui</a>
             </p>
             <h2 class="title">Estado de compra.</h2>
             <p>
                 Aun no tienes ninguna compra realizada... <br>
                 si estas interesado en alguno de nuestros productos puedes verlos haciendo <a class="anchor"
-                    href="./productos.html">Click Aqui</a>
+                    href="/api/products">Click Aqui</a>
             </p>
             <h3 class="title">Favoritos.</h3>
             <p>todavia no agregaste tus productos favoritos? <br>
@@ -29,7 +40,7 @@
                 para seleccionar tus productos a favorito solo tienes que tocar las estrellas que se encuentra
                 en la
                 imagen del producto. <br>
-                para ver los productos puede hacer <a class="anchor" href="./productos.html">Click Aqui</a>
+                para ver los productos puede hacer <a class="anchor" href="/api/products">Click Aqui</a>
             </p>
         </div>
     </div>

@@ -6,11 +6,13 @@ const pm = new ProductManagerMongo()
 
 export const productsRouter = Router()
 
-productsRouter.get('/:query', async (req, res) => {
+productsRouter.get('/', async (req, res) => {
     try {
         const filter = req.query.category ? { category: req.query.category } : {}
 
-        const userSession = req.session ? req.session.userId : null
+        const user = req.session ? req.session.user : null
+
+        const cartId = req.session ? user.cartId : null
 
         const pagination = {
             limit: req.query.limit || 10,
@@ -18,6 +20,8 @@ productsRouter.get('/:query', async (req, res) => {
             sort: req.query.sort,
             lean: true
         }
+
+        console.log(user)
 
         let data;
 
@@ -41,8 +45,8 @@ productsRouter.get('/:query', async (req, res) => {
                     <div class="col-md-subCard">
                         <p class="name-prod">${prod.title}</p>
                         <span class="price-prod">$${prod.price}</span>
-                        ${ userSession
-                             ? `<button class="btn-cart btn-outline-dark" onclick="addToCart('${userSession}', '${prod._id}')")>Add to Cart</button>`
+                        ${ user
+                             ? `<button class="btn-cart btn-outline-dark" onclick="addToCart('${user.cartId}', '${prod._id}', '${prod.title}')")>Add to Cart</button>`
                              : `<a href="/api/login" class="btn-cart btn-outline-dark">iniciar session</a>`
                         }
                     </div>
@@ -50,7 +54,8 @@ productsRouter.get('/:query', async (req, res) => {
         }));
                         
         const context = {
-            session: userSession,
+            session: user,
+            cartId: cartId,
             script: 'addProduct',
             products: products,
             docs: data.docs,
@@ -70,7 +75,7 @@ productsRouter.get('/:query', async (req, res) => {
         
         res.render('producto', context)
     } catch (error) {
-        res.send(error.message)
+        res.redirect('/api/login')
     }
     
 })

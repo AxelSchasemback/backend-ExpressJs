@@ -30,7 +30,7 @@ CartsRouter.get('/:Cid/products/:Pid', async (req, res) => {
 
 CartsRouter.get('/:Cid', async (req, res) => {
 
-    const userSession = req.session ? req.session.userId : false
+    const user = req.session ? req.session.user : false
 
     const data = await cm.getPopulate(req.params['Cid'])
 
@@ -42,11 +42,11 @@ CartsRouter.get('/:Cid', async (req, res) => {
         precios.push({ precios: (prod.product.price * prod.quantity) })
     });
 
-    console.log(userSession ? data.products : [])
+    console.log(user ? data.products : [])
 
     res.render('carrito', {
-        session: userSession,
-        userExist: userSession,
+        session: user,
+        userExist: user,
         titulo: 'PG - producto',
         product: data.products,
         precios: precios,

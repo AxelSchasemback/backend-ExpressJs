@@ -2,15 +2,15 @@ import { Carts } from './model/cart.js';
 
 export class CartManagerMongo {
 
-    async createCart(userId) {
+    async createCart(cartId) {
 
-        const existingCart = await Carts.findOne({ _id: userId });
+        const existingCart = await Carts.findOne({ _id: cartId });
 
         if (existingCart) {
             return existingCart.toObject();
         }
 
-        const cart = await Carts.create({ _id: userId, products: [] });
+        const cart = await Carts.create({ _id: cartId, products: [] });
 
         return cart.toObject();
     }

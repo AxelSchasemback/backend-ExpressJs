@@ -1,8 +1,8 @@
 import { Router } from "express"
 
-export const middlewares = Router()
+export const middleProducts = Router()
 
-middlewares.use('/products', (req, res, next) => {
+middleProducts.use('/products', (req, res, next) => {
     
     const limit = parseInt(req.query.limit)
     if ( limit > 28 || limit <= 0) {
@@ -13,7 +13,7 @@ middlewares.use('/products', (req, res, next) => {
     }
 })
 
-middlewares.use('/products/:id', (req, res, next) => {
+middleProducts.use('/products/:id', (req, res, next) => {
 
     if (req.params['id']) {
 
@@ -23,7 +23,7 @@ middlewares.use('/products/:id', (req, res, next) => {
     }
 })
 
-middlewares.use((err, req, res, next) => {
+middleProducts.use((err, req, res, next) => {
     res.json({
         status: 'error',
         desc: err.message

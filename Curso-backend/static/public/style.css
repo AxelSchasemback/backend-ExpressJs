@@ -1,4 +1,67 @@
-a .register:hover,
+a .login:hover,
+a .cart:hover {
+  background-color: #ff8800;
+  transform: scale(1.1);
+}
+
+.des-submit {
+  display: block;
+  margin-top: 0.5em;
+  width: 5em;
+  text-decoration: none;
+  font-size: 15px;
+  position: relative;
+  padding: 8px;
+  background-color: #212529;
+  color: #fff;
+  border-radius: 10px;
+}
+
+.des-submit:hover {
+  transform: scale(1.1);
+}
+
+.user-session {
+  width: 1.7em;
+  height: 1.7em;
+}
+
+.boton-user {
+  background-color: #383838;
+  border-radius: 0;
+  padding: 5px;
+  display: flex;
+  flex-direction: column;
+  border: solid black 3px;
+}
+
+.boton-user:hover {
+  background-color: #ff8800;
+  border: solid black 3px;
+  transform: scale(1.1);
+}
+
+.boton-user:focus {
+  background-color: #ff8800;
+  border: solid black 3px;
+  transform: scale(1.1);
+}
+
+.drop-user {
+  --bs-dropdown-min-width: 5rem;
+  transform: translate(-21px, 65px) !important;
+}
+
+.li-user {
+  text-align: center;
+}
+
+.dropdown-toggle::after {
+  margin: auto;
+  margin-left: auto
+}
+
+a .logout:hover,
 a .cart:hover {
   background-color: #ff8800;
   transform: scale(1.1);
@@ -149,7 +212,15 @@ a:hover {
   transform: scale(1.05);
 }
 
-a .register {
+a .login {
+  margin-right: 30px;
+  margin-top: 10px;
+  border: 3px solid #000;
+  width: 2.3em;
+  height: 2.3em;
+}
+
+a .logout {
   margin-right: 30px;
   margin-top: 10px;
   border: 3px solid #000;
@@ -252,7 +323,11 @@ a .cart {
     display: none;
   }
 
-  .register {
+  .login {
+    margin: 0px;
+  }
+
+  .logout {
     margin: 0px;
   }
 }
@@ -304,7 +379,13 @@ a la hora de agrandar la resolucion */
     flex-direction: column;
   }
 
-  .register {
+  .login {
+    margin-top: 1em;
+    width: 4.3em;
+    height: 4.3em;
+  }
+
+  .logout {
     margin-top: 1em;
     width: 4.3em;
     height: 4.3em;
@@ -353,7 +434,12 @@ a la hora de agrandar la resolucion */
     height: 3em;
   }
 
-  .register {
+  .login {
+    width: 3em;
+    height: 3em;
+  }
+
+  .logout {
     width: 3em;
     height: 3em;
   }
@@ -388,7 +474,12 @@ a la hora de agrandar la resolucion */
     height: 3em;
   }
 
-  .register {
+  .login {
+    width: 2.3em;
+    height: 2.3em;
+  }
+
+  .logout {
     width: 2.3em;
     height: 2.3em;
   }
@@ -771,12 +862,21 @@ main {
   width: 30em;
 }
 
-.btn-register {
+.btn-login {
   margin-top: 10px;
   color: #ffffff12;
 }
 
-.btn-register:hover {
+.btn-logout {
+  margin-top: 10px;
+  color: #ffffff12;
+}
+
+.btn-login:hover {
+  color: white;
+}
+
+.btn-logout:hover {
   color: white;
 }
 
@@ -1406,7 +1506,7 @@ footer {
   content: '';
   position: absolute;
   width: 60em;
-  height: 60em;
+  height: 20em;
   background: linear-gradient(#000, rgb(255, 145, 0), #000);
   animation: animate 5s linear infinite;
   z-index: -1;
