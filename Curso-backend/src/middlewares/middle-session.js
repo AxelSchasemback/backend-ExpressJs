@@ -1,6 +1,6 @@
-import connectMongo from 'connect-mongo'
-import { MONGODB_URL } from '../config.js'
 import session from 'express-session';
+import connectMongo from 'connect-mongo'
+import { SECRET_CODE, MONGODB_URL } from '../config.js';
 import { Router } from 'express';
 
 export const middleSession = Router()
@@ -10,16 +10,9 @@ const store = connectMongo.create({
     ttl: 300,
 })
 
-middleSession.use(session({
+export const serverSession = session({
     store,
-    secret: 'coso',
+    secret: SECRET_CODE,
     resave: true,
     saveUninitialized: true
-}));
-
-export function logued(req, res, next) {
-    if(!req.session.user){
-       return res.status(400).json({status: failed, message: error.message})
-    }
-    next()
-}
+});

@@ -18,6 +18,12 @@ viewsRouter.get('/api/realTimeProducts', async (req, res) => {
     })
 })
 
+viewsRouter.get('/api/reset', (req, res) => {
+    res.render('reset', {
+        titulo: 'Reset Password'
+    })
+})
+
 viewsRouter.get('/api/home', async (req, res) => {
     const products = await pm.getProduct()
     res.render('home', {

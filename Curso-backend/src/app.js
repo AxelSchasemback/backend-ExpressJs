@@ -5,8 +5,10 @@ import { engine } from 'express-handlebars';
 import { Server as IOServer } from 'socket.io';
 import { ProductManagerMongo } from './dao/ProductManagerMongo.js';
 import mongoose from 'mongoose';
-import { MONGODB_URL, PORT } from './config.js';
+import { serverSession } from './middlewares/middle-session.js';
+import { MONGODB_URL, PORT} from './config.js';
 import { messagesManager } from './dao/messageManagerMongo.js';
+import { authenticate } from './middlewares/passport.js';
 
 const pm = new ProductManagerMongo();
 
@@ -14,6 +16,9 @@ await mongoose.connect(MONGODB_URL);
 console.log(`Base de datos conectada a ${MONGODB_URL}`);
 
 const app = express();
+
+app.use(serverSession)
+app.use(authenticate)
 
 app.use(express.json());
 

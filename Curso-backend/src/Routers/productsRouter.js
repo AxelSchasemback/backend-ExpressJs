@@ -10,7 +10,7 @@ productsRouter.get('/', async (req, res) => {
     try {
         const filter = req.query.category ? { category: req.query.category } : {}
 
-        const user = req.session ? req.session.user : null
+        const user = req.user || null
 
         const cartId = req.session ? user.cartId : null
 

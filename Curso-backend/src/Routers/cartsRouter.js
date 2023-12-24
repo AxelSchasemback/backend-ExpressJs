@@ -30,7 +30,7 @@ CartsRouter.get('/:Cid/products/:Pid', async (req, res) => {
 
 CartsRouter.get('/:Cid', async (req, res) => {
 
-    const user = req.session ? req.session.user : false
+    const user = req.user || null
 
     const data = await cm.getPopulate(req.params['Cid'])
 

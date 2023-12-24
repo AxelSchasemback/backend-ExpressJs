@@ -1,12 +1,12 @@
 import { Router } from "express"
-import { logued } from "../middlewares/middle-session.js"
 import { User } from "../dao/model/user.js"
+import { loguedWeb } from "../middlewares/auth.js";
 
 export const accountRouter = Router()
 
-accountRouter.get('/', logued, async (req, res) => {
+accountRouter.get('/', loguedWeb, async (req, res) => {
     try {
-        const user = req.session ? req.session.user : null
+        const user = req.user || null
 
         console.log(user)
 
@@ -29,7 +29,7 @@ accountRouter.get('/', logued, async (req, res) => {
 
 accountRouter.post('/', async (req, res) => {
     try {
-        const user = req.session ? req.session.user : null
+        const user = req.user || null
 
         await User.findOneAndUpdate(
             { email: user.email },
