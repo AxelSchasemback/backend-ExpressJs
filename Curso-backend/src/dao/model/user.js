@@ -26,6 +26,10 @@ const schemaUser = new mongoose.Schema(
       },
     },
     statics: {
+      cartId: async function () {
+        return await cm.createCart(randomUUID())
+      },
+
       userData: function (data) {
         const dataUser = {
           name: data.name,
@@ -33,13 +37,12 @@ const schemaUser = new mongoose.Schema(
           sex: data.sex,
           date: data.date,
           description: data.description,
-          cartId: data.cartId,
+          cartId: data.cartId
         };
         return dataUser;
       },
 
       register: async function (reqBody) {
-        const cartId = await cm.createCart(randomUUID());
         const newUser = new this({
           _id: randomUUID(),
           name: reqBody.name,
@@ -47,7 +50,7 @@ const schemaUser = new mongoose.Schema(
           sex: reqBody.sex,
           email: reqBody.email,
           password: reqBody.password,
-          cartId: cartId._id,
+          cartId: await this.cartId()
         });
 
         await newUser.save();

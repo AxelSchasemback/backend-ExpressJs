@@ -3,18 +3,29 @@ import passport from "passport";
 
 export const sessionRouter = Router()
 
+sessionRouter.get('/githublogin',
+    passport.authenticate('github', { scope: ['user: email'] })
+    )
+
+sessionRouter.get('/githubcallback',
+    passport.authenticate('github', {
+        successRedirect: '/api/products',
+        failureRedirect: '/api/login'
+    })
+    )
+
 sessionRouter.post('/register',
     passport.authenticate('register', {
-         failureRedirect: '/api/register',
-         successRedirect: '/api/products'
-        }),
+        failureRedirect: '/api/register',
+        successRedirect: '/api/products'
+    }),
 );
 
 sessionRouter.post('/login',
     passport.authenticate('login', {
-         failureRedirext: '/api/login',
-         successRedirect: '/api/products'
-        }),
+        failureRedirext: '/api/login',
+        successRedirect: '/api/products'
+    }),
 );
 
 sessionRouter.post('/reset',

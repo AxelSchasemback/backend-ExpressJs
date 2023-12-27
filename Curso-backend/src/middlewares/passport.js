@@ -1,8 +1,35 @@
 import passport from "passport";
-import { Strategy } from "passport-local";
+import { Strategy as LocalStrategy } from "passport-local";
 import { User } from "../dao/model/user.js";
+import { Strategy as GitHubStrategy } from "passport-github2"
+import { gitHubCallBackUrl, gitHubClientSecre, gitHubClientId } from "../config.js";
 
-passport.use('register', new Strategy({
+passport.use('github', new GitHubStrategy({
+    clientID: gitHubClientId,
+    clientSecret: gitHubClientSecre,
+    callbackURL: gitHubCallBackUrl
+}, async function verify(asd, asdd, profile, done) {
+    console.log(profile)
+    const user = await User.findOne({ email: profile.username })
+    if (user) {
+        return done(null, User.userData(user))
+    }
+
+    try {
+        const registerUser = await User.create({
+            email: profile.username,
+            password: '(nulo)',
+            name: profile.displayName,
+            cartId: await User.cartId()
+        })
+        return done(null, User.userData(registerUser))
+    } catch (error) {
+        return done(error)
+    }
+}
+))
+
+passport.use('register', new LocalStrategy({
     passReqToCallback: true,
     usernameField: 'email'
 }, async (req, _u, _p, done) => {
@@ -10,23 +37,23 @@ passport.use('register', new Strategy({
         const dataUser = await User.register(req.body)
         done(null, dataUser)
     } catch (error) {
-        done(null, false, error.message)
+        done(null, false, console.error(error))
     }
 }
 ))
 
-passport.use('login', new Strategy({
+passport.use('login', new LocalStrategy({
     usernameField: 'email'
 }, async (email, password, done) => {
     try {
         const dataUser = await User.validate(email, password)
         done(null, dataUser)
     } catch (error) {
-        return done(null, false, error.message)
+        return done(null, false, console.error(error))
     }
 }))
 
-passport.use('reset', new Strategy({
+passport.use('reset', new LocalStrategy({
     passReqToCallback: true,
     usernameField: 'email'
 }, async (req, email, password, done) => {
@@ -44,7 +71,7 @@ passport.use('reset', new Strategy({
 
         done(null, dataUser)
     } catch (error) {
-        done(null, false, error.message)
+        done(null, false, console.error(error))
     }
 }
 ))

@@ -1574,8 +1574,11 @@ footer {
 }
 
 .sectioKey .signin .content .form .inputBox {
+  display: flex;
   position: relative;
   width: 100%;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .sectioKey .signin .content .form .inputBox input {
@@ -1681,4 +1684,13 @@ footer {
 .pagination b {
   padding: 6px 4px;
   margin: 4px 1em;
+}
+
+.bi-github {
+  width: 3em;
+  padding-top: 1em;
+}
+
+.bi-github:hover {
+  transform: scale(1.1)
 }
