@@ -7,7 +7,7 @@ export const middleSession = Router()
 
 const store = connectMongo.create({
     mongoUrl: MONGODB_URL,
-    ttl: 300,
+    ttl: 60 * 60 * 24
 })
 
 export const serverSession = session({

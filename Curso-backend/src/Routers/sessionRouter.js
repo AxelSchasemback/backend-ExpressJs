@@ -1,45 +1,48 @@
-import { Router } from "express";
-import passport from "passport";
+import { Router } from 'express'
+import passport from 'passport'
+
+import { appendJwtAsCookie, removeJwtFromCookies } from "../middlewares/passport.js";
 
 export const sessionRouter = Router()
 
-sessionRouter.get('/githublogin',
-    passport.authenticate('github', { scope: ['user: email'] })
-    )
+sessionRouter.post('/login',
+  passport.authenticate('local-login', {
+    failWithError: true
+  }),
+  appendJwtAsCookie,
+  async function (req, res) {
+    res.status(201).redirect('/api/products')
+  },
+)
+
+sessionRouter.get('/current',
+  passport.authenticate('jwt', {
+    failWithError: true
+  }),
+  function (req, res) { return res.json(req.user) },
+)
+
+sessionRouter.delete('/current',
+  removeJwtFromCookies,
+  (req, res) => {
+    res.json({ status: 'success', message: 'logout OK' })
+  }
+)
 
 sessionRouter.get('/githubcallback',
-    passport.authenticate('github', {
-        successRedirect: '/api/products',
-        failureRedirect: '/api/login'
-    })
-    )
-
-sessionRouter.post('/register',
-    passport.authenticate('register', {
-        failureRedirect: '/api/register',
-        successRedirect: '/api/products'
-    }),
-);
-
-sessionRouter.post('/login',
-    passport.authenticate('login', {
-        failureRedirext: '/api/login',
-        successRedirect: '/api/products'
-    }),
-);
-
-sessionRouter.post('/reset',
-    passport.authenticate('reset', {
-        failureRedirect: '/api/login',
-        successRedirect: '/api/products'
-    })
+  passport.authenticate('github-login', {
+    failWithError: true
+  }),
+  appendJwtAsCookie,
+  (req, res) => { res.redirect('/profile') },
+  (error, req, res, next) => { res.redirect('/login') }
 )
 
 sessionRouter.get('/logout', (req, res) => {
-    req.logout(error => {
-        if (error) {
-            console.log(error)
-        }
-        res.redirect('/api/login')
-    })
+  req.logout(error => {
+    if (error) {
+      console.log(error)
+    }
+    res.redirect('/api/login')
+  })
 })

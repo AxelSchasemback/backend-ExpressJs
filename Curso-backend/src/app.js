@@ -6,7 +6,8 @@ import { Server as IOServer } from 'socket.io';
 import { ProductManagerMongo } from './dao/ProductManagerMongo.js';
 import mongoose from 'mongoose';
 import { serverSession } from './middlewares/middle-session.js';
-import { MONGODB_URL, PORT} from './config.js';
+import cookieParser from 'cookie-parser'
+import { MONGODB_URL, PORT, COOKIE_SECRET } from './config.js';
 import { messagesManager } from './dao/messageManagerMongo.js';
 import { authenticate } from './middlewares/passport.js';
 
@@ -23,6 +24,8 @@ app.use(authenticate)
 app.use(express.json());
 
 app.use(express.urlencoded({ extended: true }));
+
+app.use(cookieParser(COOKIE_SECRET))
 
 viewsRouter.use('/static', express.static('./static'));
 
